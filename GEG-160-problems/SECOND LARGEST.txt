@@ -1,0 +1,52 @@
+									SECOND LARGEST
+
+Given an array of positive integers arr[], return the second largest element from the array. If the second largest element doesn't exist then return -1.
+
+Note: The second largest element should not be equal to the largest element.
+
+Examples:
+
+Input: arr[] = [12, 35, 1, 10, 34, 1]
+Output: 34
+Explanation: The largest element of the array is 35 and the second largest element is 34.
+Input: arr[] = [10, 5, 10]
+Output: 5
+Explanation: The largest element of the array is 10 and the second largest element is 5.
+
+
+
+
+									SOLUTION:
+
+BRUTEFORCE SOLUTION
+
+class Solution:
+    def getSecondLargest(self, arr):
+        arr = sorted(arr)
+        n = len(arr)
+        i = n-1
+        while i > 0 :
+            if arr[i-1] < arr[i]:
+                return arr[i-1]
+            else:
+                i -= 1
+        return -1
+
+TIME COMPLEXITY = O(nlogn)
+
+
+OPTIMIZED SOLUTION
+
+    def getSecondLargest(self, arr):
+        first_largest = second_largest = -1
+        for number in arr:
+            if number > first_largest:
+                second_largest = first_largest
+                first_largest = number
+            elif number < first_largest and number > second_largest:
+                second_largest = number
+        return second_largest
+
+TIME COMPLEXITY = O(n)
+
+
